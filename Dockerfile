@@ -2,15 +2,11 @@ FROM oven/bun:latest
 
 WORKDIR /app
 
-# Copy package.json and lockfile
-COPY package.json .
-COPY bun.lockb .
+# Copy application code
+COPY . .
 
 # Install dependencies
 RUN bun install
-
-# Copy application code
-COPY . .
 
 # Expose the port your app runs on
 EXPOSE 3000
