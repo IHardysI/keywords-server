@@ -5,6 +5,8 @@ import { createUserController } from "./controllers/UserController";
 
 const db = await connectToDb();
 
+const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+
 const app = new Elysia()
   .use(cors({
     origin: ['http://localhost:3000'],
@@ -16,7 +18,7 @@ const app = new Elysia()
   }))
   .get('/', () => 'Hello Elysia')
   .use(createUserController(db))
-  .listen(3000);
+  .listen(port);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
 
